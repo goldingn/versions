@@ -153,3 +153,62 @@ from its source in the CRAN archives\n\n",
   return (date)
 
 }
+
+
+# get current version of package
+current.version <- function (pkg) {
+
+  # get all current contributed packages in latest MRAN
+  current_url <- sprintf('%s/src/contrib',
+                         latest.MRAN())
+
+  # get the lines
+  lines <- url.lines(current_url)
+
+  # keep only lines starting with hrefs
+  lines <- lines[grep('^<a href="*', lines)]
+
+  # take the sequence after the href that is between the quotes
+  tarballs <- gsub('.*href=\"([^\"]+)\".*', '\\1', lines)
+
+  # match the sequence in number-letter-number format
+  dates <- gsub('.*  ([0-9]+-[a-zA-Z]+-[0-9]+) .*', '\\1', lines)
+
+  # convert dates to standard format
+  dates <- as.Date(dates, format = '%d-%b-%Y')
+
+  # get the ones matching the package
+  idx <- grep(sprintf('^%s_.*.tar.gz$', pkg),
+              tarballs)
+
+  if (length(idx) == 1) {
+    # if this provided exactly one match, it's the current package
+    # so scrape the version and get the date
+
+    versions <- tarballs[idx]
+
+    # remove the leading package name
+    versions <- gsub(sprintf('^%s_', pkg),
+                     '', versions)
+
+    # remove the trailing tarball extension
+    versions <- gsub('.tar.gz$', '', versions)
+
+    dates <- dates[idx]
+
+  } else {
+    # otherwise warn and return NAs
+    warning (sprintf('The current version and publication date of %s could not
+be detected',
+                     pkg))
+    versions <- dates <- NA
+  }
+
+  # create dataframe, reversing both
+  df <- data.frame(version = versions,
+                   date = as.character(dates),
+                   stringsAsFactors = FALSE)
+
+  return (df)
+
+}

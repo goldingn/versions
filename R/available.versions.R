@@ -47,8 +47,15 @@ available.versions <- function (pkgs) {
                          pkgs)
 
   # scrape the versions therein
-  df <- scrape.index.versions(archive_url,
+  previous_df <- scrape.index.versions(archive_url,
                                    pkgs)
+
+  # get the current version
+  current_df <- current.version(pkgs)
+
+  # append the current version
+  df <- rbind(current_df,
+              previous_df)
 
   # add whether they are on MRAN
   df$available <- as.Date(df$date) >= as.Date('2014-09-17')
