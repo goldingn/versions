@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/goldingn/versions.svg?branch=master)](https://travis-ci.org/goldingn/versions)
+
 # versions
 
 *versions* installs specified versions of R packages hosted on CRAN and provides
