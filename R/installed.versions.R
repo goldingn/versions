@@ -22,7 +22,7 @@ installed.versions <- function (pkgs,
 
   if (missing(lib) || is.null(lib)) {
     lib <- .libPaths()[1L]
-    if (!quiet && length(.libPaths()) > 1L)
+    if (length(.libPaths()) > 1L)
       message(sprintf(ngettext(length(pkgs), "Installing package into %s\n(as %s is unspecified)",
                                "Installing packages into %s\n(as %s is unspecified)"),
                       sQuote(lib), sQuote("lib")), domain = NA)
@@ -32,7 +32,7 @@ installed.versions <- function (pkgs,
   # vectorise by recursion
   if (length(pkgs) > 1) {
     ans <- sapply(pkgs,
-                  getVersion,
+                  installed.versions,
                   lib)
 
     return (ans)
