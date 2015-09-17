@@ -23,11 +23,29 @@ available.versions <- function (pkgs) {
     ans <- lapply(pkgs,
                   available.versions)
 
+    # remove a level of listing
+    ans <- lapply(ans, '[[', 1)
+
     return (ans)
   }
 
-  # scrape versions form corresponding pages of the latest versions of MRAN
+  # get most recent MRAN image URL
+  archive_url <- sprintf('%s/src/contrib/Archive/%s',
+                         latest.MRAN(),
+                         pkgs)
 
+  # scrape the versions therein
+  version <- scrape.index.versions(archive_url,
+                                   pkgs)
 
+  # return a dataframe
+  df <- data.frame(version = version)
+
+  # wrap into a list
+  ans <- list()
+
+  ans[[pkgs]] <- df
+
+  return(ans)
 
 }
