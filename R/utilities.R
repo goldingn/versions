@@ -94,8 +94,62 @@ scrape.index.versions <- function (url, pkgs) {
 
   # create dataframe, reversing both
   df <- data.frame(version = versions[o],
-                   date = as.character(dates[o]))
+                   date = as.character(dates[o]),
+                   stringsAsFactors = FALSE)
 
   return (df)
+
+}
+
+# given packages name and required versions,
+# return a date when it was live on CRAN
+version2date <- function (pkgs, versions) {
+
+  # vectorise by recursion
+  if (length(pkgs) > 1) {
+    ans <- sapply(pkgs,
+                  version2date,
+                  versions)
+
+    return (ans)
+  }
+
+  # get available versions for the package
+  df <- available.versions(pkgs)[[1]]
+
+  # error if the version is not recognised
+  if (!(versions %in% df$version)) {
+    stop (sprintf('%s does not appear to be a valid version of %s.
+                  Use available.packages("%s") to get valid versions',
+                  versions,
+                  pkgs,
+                  pkgs))
+  }
+
+  # find the row corresponding to the version
+  idx <- match(versions, df$version)
+
+  # error if the version is recognised, but not available on MRAN
+  if (!df$available[idx]) {
+    stop (sprintf("%s is a valid version of %s, but was published before
+2014-09-17 and can therefore not be downloaded from MRAN.
+Try using devtools::install_version to install the package
+from its source in the CRAN archives.",
+                  versions,
+                  pkgs))
+  }
+
+  # get a middling date
+
+  # append today's date (note idx is one off now)
+  dates <- c(Sys.Date(),
+             as.Date(df$date))
+
+  # get the mean of the publication date and subsequent publication date
+  # (or today) as the target date for version installation
+  date <- as.character(mean(dates[idx + 0:1]))
+
+  # return this
+  return (date)
 
 }

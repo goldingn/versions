@@ -26,6 +26,9 @@ install.versions <- function (pkgs,
                               lib,
                               ...) {
 
+  # number of packages to install
+  n_pkgs <- length(pkgs)
+
   if (!inherits(versions, 'character')) {
     stop ('versions must be a character vector')
   }
@@ -34,10 +37,18 @@ install.versions <- function (pkgs,
     rep(versions, length(pkgs))
   }
 
-  if (length(versions) != length(pkgs)) {
+  if (length(versions) != n_pkgs) {
     stop ('versions must be have either length one, or the same length as pkgs')
   }
 
-  install.packages(pkgs, lib, ...)
+  # get date corresponding to version for this package
+  date <- version2date(pkgs = pkgs,
+                       versions = versions)
+
+  # install by date
+  install.dates(pkgs = pkgs,
+                dates = date,
+                lib = lib,
+                ...)
 
 }
