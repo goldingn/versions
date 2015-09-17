@@ -4,7 +4,7 @@
 \name{versions}
 \alias{versions}
 \alias{versions-package}
-\title{versions: Query and install specific versions of packages on CRAN}
+\title{versions: Query and Install Specific Versions of Packages on CRAN}
 \description{
 \code{versions} installs specified versions of R packages
 hosted on CRAN and provides functions to list available versions and the

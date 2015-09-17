@@ -1,4 +1,4 @@
-#' @title versions: Query and install specific versions of packages on CRAN
+#' @title versions: Query and Install Specific Versions of Packages on CRAN
 #'
 #' @name versions
 #' @description \code{versions} installs specified versions of R packages
