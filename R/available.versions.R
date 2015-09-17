@@ -1,7 +1,5 @@
 #' available.versions
 #'
-#' List All Versions of Packages and Those Available to Install From MRAN
-#'
 #' @description List all of the past versions of the named packages ever
 #'  uploaded to CRAN (and therefore in the CRAN source archives), their
 #'  publication dates and whether they can be installed from MRAN via

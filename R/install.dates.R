@@ -1,7 +1,5 @@
 #' install.dates
 #'
-#' Install the Latest Package Version as of a Specific Date from the MRAN Server
-#'
 #' @description Download and install the latest versions of packages hosted on
 #'  CRAN as of a specific date from the MRAN server.
 #'

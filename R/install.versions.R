@@ -1,7 +1,5 @@
 #' install.versions
 #'
-#' Install Specific Package Versions from the MRAN Server
-#'
 #' @description Download and install named versions of packages hosted on
 #'  CRAN from the MRAN server.
 #'

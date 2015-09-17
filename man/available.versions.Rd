@@ -21,9 +21,6 @@ List all of the past versions of the named packages ever
  publication dates and whether they can be installed from MRAN via
  \code{\link{install.versions}} or \code{\link{install.dates}}.
 }
-\details{
-List All Versions of Packages and Those Available to Install From MRAN
-}
 \examples{
 \dontrun{
 

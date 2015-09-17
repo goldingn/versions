@@ -1,7 +1,5 @@
 #' installed.versions
 #'
-#' List the Versions of Packages Installed in a Specified Library
-#'
 #' @description List the installed versions of packages in a library directory
 #'
 #' @param pkgs character vector of the names of packages for which to query the
