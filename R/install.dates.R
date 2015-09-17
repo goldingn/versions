@@ -29,11 +29,11 @@ install.dates <- function (pkgs,
                            lib,
                            ...) {
 
-  if (!inherits(verions, c('character', 'Date'))) {
+  if (!inherits(dates, c('character', 'Date'))) {
     stop ('dates must be a vector of class character or Date')
   }
 
-  if (length(versions) == 1) {
+  if (length(dates) == 1) {
     rep(dates, length(pkgs))
   }
 

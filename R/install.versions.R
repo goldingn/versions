@@ -28,7 +28,7 @@ install.versions <- function (pkgs,
                               lib,
                               ...) {
 
-  if (!inherits(verions, 'character')) {
+  if (!inherits(versions, 'character')) {
     stop ('versions must be a character vector')
   }
 

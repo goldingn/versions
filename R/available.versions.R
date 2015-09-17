@@ -21,8 +21,7 @@ available.versions <- function (pkgs) {
   # vectorise by recursion
   if (length(pkgs) > 1) {
     ans <- lapply(pkgs,
-                  getVersion,
-                  lib)
+                  available.versions)
 
     return (ans)
   }
