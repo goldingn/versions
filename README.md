@@ -1,9 +1,9 @@
 # versions
 
-`versions` installs specified versions of R packages hosted on CRAN and provides
+*versions* installs specified versions of R packages hosted on CRAN and provides
 functions to list available versions and the versions of currently installed
 packages. These tools can be used to help make R projects and packages more
-reproducible. versions fits in the narrow gap between the
+reproducible. *versions* fits in the narrow gap between the
 [`devtools`](https://cran.r-project.org/web/packages/devtools/index.html)
 `install_version` function and the
 [`checkpoint`](https://cran.r-project.org/web/packages/checkpoint/index.html)
@@ -13,7 +13,7 @@ package, using Revolution Analytics'
 ### usage
 
 You can list the versions of a package that have been on CRAN,
-when they were added and whether they are available for `versions` to install.
+when they were added and whether they are available for *versions* to install.
 
 ```r
 available.versions(c('checkpoint', 'devtools'))
@@ -82,8 +82,8 @@ users get longer installation times.
 source or binary) as they were available on a given date. It also provides a
 helpful interface to detect the packages in use in a directory and install all
 of those packages for a given date. `checkpoint` doesn't provide
-`install.packages`-like functionality however, and that's what `versions` aims
+`install.packages`-like functionality however, and that's what *versions* aims
 to do, by querying MRAN.
 
-As MRAN only goes back to 2014-09-17, `versions` can't install package from
+As MRAN only goes back to 2014-09-17, *versions* can't install package from
 before this date.
