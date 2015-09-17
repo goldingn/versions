@@ -87,5 +87,5 @@ of those packages for a given date. `checkpoint` doesn't provide
 `install.packages`-like functionality however, and that's what *versions* aims
 to do, by querying MRAN.
 
-As MRAN only goes back to 2014-09-17, *versions* can't install package from
+As MRAN only goes back to 2014-09-17, *versions* can't install packages from
 before this date.
