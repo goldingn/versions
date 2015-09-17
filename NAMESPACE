@@ -2,3 +2,4 @@
 
 export(install.dates)
 export(install.versions)
+export(installed.versions)
