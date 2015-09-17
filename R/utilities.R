@@ -86,12 +86,15 @@ scrape.index.versions <- function (url, pkgs) {
   # match the sequence in number-letter-number format
   dates <- gsub('.*  ([0-9]+-[a-zA-Z]+-[0-9]+) .*', '\\1', lines)
 
-  # convert dates to standard
+  # convert dates to standard format
   dates <- as.Date(dates, format = '%d-%b-%Y')
 
+  # get them in date order
+  o <- order(dates, decreasing = TRUE)
+
   # create dataframe, reversing both
-  df <- data.frame(version = rev(versions),
-                   date = rev(dates))
+  df <- data.frame(version = versions[o],
+                   date = as.character(dates[o]))
 
   return (df)
 
