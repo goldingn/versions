@@ -21,6 +21,18 @@
 #'
 #' @export
 #' @name install.versions
+#'
+#' @examples
+#'
+#'\dontrun{
+#'
+#' # install an earlier version of checkpoint
+#' install.dates('checkpoint', '0.3.3')
+#'
+#' # install earlier versions of checkpoint and devtools
+#' install.dates(c('checkpoint', 'devtools'), c('0.3.3', '1.6.1'))
+#'
+#'}
 install.versions <- function (pkgs,
                               versions,
                               lib,
@@ -34,7 +46,7 @@ install.versions <- function (pkgs,
   }
 
   if (length(versions) == 1) {
-    rep(versions, length(pkgs))
+    versions <- rep(versions, n_pkgs)
   }
 
   if (length(versions) != n_pkgs) {

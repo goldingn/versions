@@ -107,8 +107,8 @@ version2date <- function (pkgs, versions) {
 
   # vectorise by recursion
   if (length(pkgs) > 1) {
-    ans <- sapply(pkgs,
-                  version2date,
+    ans <- mapply(version2date,
+                  pkgs,
                   versions)
 
     return (ans)
@@ -120,7 +120,7 @@ version2date <- function (pkgs, versions) {
   # error if the version is not recognised
   if (!(versions %in% df$version)) {
     stop (sprintf('%s does not appear to be a valid version of %s.
-                  Use available.packages("%s") to get valid versions',
+Use available.versions("%s") to get valid versions\n\n',
                   versions,
                   pkgs,
                   pkgs))
@@ -134,7 +134,7 @@ version2date <- function (pkgs, versions) {
     stop (sprintf("%s is a valid version of %s, but was published before
 2014-09-17 and can therefore not be downloaded from MRAN.
 Try using devtools::install_version to install the package
-from its source in the CRAN archives.",
+from its source in the CRAN archives\n\n",
                   versions,
                   pkgs))
   }

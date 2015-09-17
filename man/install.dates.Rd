@@ -32,6 +32,7 @@ Download and install the latest versions of packages hosted on
 }
 \examples{
 \dontrun{
+
 # install yesterday's version of checkpoint
 install.dates('checkpoint', Sys.Date() - 1)
 

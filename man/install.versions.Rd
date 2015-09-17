@@ -28,4 +28,15 @@ downloaded and installed}
 Download and install named versions of packages hosted on
  CRAN from the MRAN server.
 }
+\examples{
+\dontrun{
+
+# install an earlier version of checkpoint
+install.dates('checkpoint', '0.3.3')
+
+# install earlier versions of checkpoint and devtools
+install.dates(c('checkpoint', 'devtools'), c('0.3.3', '1.6.1'))
+
+}
+}
 
