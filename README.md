@@ -3,14 +3,17 @@
 `versions` installs specified versions of R packages hosted on CRAN and provides
 functions to list available versions and the versions of currently installed
 packages. These tools can be used to help make R projects and packages more
-reproducible. versions fits in the narrow gap between the `devtools`
-`install_version` function and the `checkpoint` package, using Revolution
-Analytics' MRAN snapshot server.
+reproducible. versions fits in the narrow gap between the
+[`devtools`](https://cran.r-project.org/web/packages/devtools/index.html)
+`install_version` function and the
+[`checkpoint`](https://cran.r-project.org/web/packages/checkpoint/index.html)
+package, using Revolution Analytics'
+[MRAN snapshot server](https://mran.revolutionanalytics.com/documents/rro/reproducibility/).
 
 ### usage
 
 You can list the versions of a package that have been on CRAN,
-when they were added and whether they are available to install with `versions`.
+when they were added and whether they are available for `versions` to install.
 
 ```r
 available.versions(c('checkpoint', 'devtools'))
