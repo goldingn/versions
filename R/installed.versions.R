@@ -17,6 +17,10 @@
 #'
 #' @export
 #' @name installed.versions
+#'
+#' @examples
+#' installed.versions('versions')
+#' installed.versions(c('stats', 'versions'))
 installed.versions <- function (pkgs,
                                 lib) {
 

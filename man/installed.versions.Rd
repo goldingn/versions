@@ -25,4 +25,8 @@ List the installed versions of packages in a library directory
 \details{
 List the Versions of Packages Installed in a Specified Library
 }
+\examples{
+installed.versions('versions')
+installed.versions(c('stats', 'versions'))
+}
 
