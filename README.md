@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/goldingn/versions.svg?branch=master)](https://travis-ci.org/goldingn/versions)
+[![cran version](http://www.r-pkg.org/badges/version/versions)](http://cran.rstudio.com/web/packages/versions)
 
 # versions
 
