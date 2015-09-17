@@ -26,7 +26,14 @@ List the installed versions of packages in a library directory
 List the Versions of Packages Installed in a Specified Library
 }
 \examples{
+# the versions of versions
 installed.versions('versions')
+
+# apply to multiple packages
 installed.versions(c('stats', 'versions'))
+
+# add a package that doesn't exist or isn't installed
+# (returns NA for that one)
+installed.versions(c('stats', 'versions', 'notapackage'))
 }
 

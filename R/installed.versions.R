@@ -19,8 +19,17 @@
 #' @name installed.versions
 #'
 #' @examples
+#'
+#' # the versions of versions
 #' installed.versions('versions')
+#'
+#' # apply to multiple packages
 #' installed.versions(c('stats', 'versions'))
+#'
+#' # add a package that doesn't exist or isn't installed
+#' # (returns NA for that one)
+#' installed.versions(c('stats', 'versions', 'notapackage'))
+#'
 installed.versions <- function (pkgs,
                                 lib) {
 
@@ -50,9 +59,7 @@ installed.versions <- function (pkgs,
   # check it exists
   if (!file.exists(desc_path)) {
 
-    warning (sprintf('package %s is not in the specified library, returning NA',
-                     pkg))
-    return(NA)
+    return (NA)
 
   } else {
 
