@@ -16,6 +16,18 @@
 #'
 #' @export
 #' @name available.versions
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # available versions of checkpoint
+#' available.versions('checkpoint')
+#'
+#' # available versions of checkpoint and devtools
+#' available.versions(c('checkpoint', 'devtools'))
+#'
+#' }
+#'
 available.versions <- function (pkgs) {
 
   # vectorise by recursion
@@ -25,6 +37,8 @@ available.versions <- function (pkgs) {
 
     # remove a level of listing
     ans <- lapply(ans, '[[', 1)
+
+    names(ans) <- pkgs
 
     return (ans)
   }

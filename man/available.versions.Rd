@@ -24,4 +24,15 @@ List all of the past versions of the named packages ever
 \details{
 List All Versions of Packages and Those Available to Install From MRAN
 }
+\examples{
+\dontrun{
+
+# available versions of checkpoint
+available.versions('checkpoint')
+
+# available versions of checkpoint and devtools
+available.versions(c('checkpoint', 'devtools'))
+
+}
+}
 
