@@ -33,6 +33,8 @@
 #'
 #' @docType package
 #'
+#' @importFrom utils install.packages download.file
+#'
 #' @examples
 #'
 #' \dontrun{
