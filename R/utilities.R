@@ -40,7 +40,7 @@ latest.MRAN <- function(url = 'https://mran.revolutionanalytics.com/snapshot') {
 }
 
 
-# list the dates in an index page
+# list the dates in an index page file dates as subdirectories
 scrape.index.dates <- function (url) {
 
   # get the lines
@@ -74,16 +74,25 @@ scrape.index.versions <- function (url, pkgs) {
   lines <- lines[grep('^<a href="*', lines)]
 
   # take the sequence after the href that is between the quotes
-  lines <- gsub('.*href=\"([^\"]+)\".*', '\\1', lines)
+  versions <- gsub('.*href=\"([^\"]+)\".*', '\\1', lines)
 
   # remove the leading package name
-  lines <- gsub(sprintf('^%s_', pkgs),
-                '', lines)
+  versions <- gsub(sprintf('^%s_', pkgs),
+                '', versions)
 
   # remove the trailing tarball extension
-  lines <- gsub('.tar.gz$', '', lines)
+  versions <- gsub('.tar.gz$', '', versions)
 
-  # return list in reverse
-  return (rev(lines))
+  # match the sequence in number-letter-number format
+  dates <- gsub('.*  ([0-9]+-[a-zA-Z]+-[0-9]+) .*', '\\1', lines)
+
+  # convert dates to standard
+  dates <- as.Date(dates, format = '%d-%b-%Y')
+
+  # create dataframe, reversing both
+  df <- data.frame(version = rev(versions),
+                   date = rev(dates))
+
+  return (df)
 
 }
