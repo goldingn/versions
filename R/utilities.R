@@ -1,14 +1,26 @@
 # utility functions for versions package
 
-# read lines from a url with a clearer error message on failure
+# read lines from a url more quickly and with a clearer error
+# message on failure than readLines
 url.lines <- function (url) {
-  lines <- tryCatch(
-    suppressWarnings(readLines(url)),
-    error = function (cond) {
-      stop (sprintf('URL does not appear to exist: %s',
-                    url))
-    })
-  return(lines)
+
+  # create a tempfile
+  file <- tempfile()
+
+  # stick the html in there
+  suppressWarnings(success <- download.file(url, file,
+                           quiet = TRUE))
+
+  # if it failed, issue a nice error
+  if (success != 0) {
+    stop(sprintf('URL does not appear to exist: %s',
+                 url))
+  }
+
+  # get the lines, delete the file and return
+  lines <- readLines(file)
+  file.remove(file)
+  return (lines)
 }
 
 
