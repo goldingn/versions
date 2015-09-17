@@ -23,5 +23,5 @@ Description: \code{versions} installs specified versions of R packages
  however, and that's what \code{versions} aims to do, by querying MRAN.
  As MRAN only goes back to 2014-09-17, \code{versions} can't install package
  from before this date.
-License: MIT 
+License: BSD_3_clause + file LICENSE 
 LazyData: TRUE
