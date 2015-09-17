@@ -11,10 +11,12 @@ install.dates(pkgs, dates, lib, ...)
  downloaded and installed}
 
 \item{dates}{character or Date vector of the dates for which to install the
-latest versions of \code{pkgs}. If this has the same length as \code{pkgs}
+latest versions of \code{pkgs}. If a data vector, it must be in the format
+'yyyy-mm-dd', e.g. '2014-09-17'. If this has the same length as \code{pkgs}
  versions will correspond to those packages. If this has length one
  the same version will be used for all packages. If it has any other
- length an error will be thrown.}
+ length an error will be thrown. Dates before 2014-09-17 will cause an error
+ as MRAN does not archive before that date.}
 
 \item{lib}{character vector giving the library directories where to
  install the packages. Recycled as needed. If missing, defaults to the
@@ -30,5 +32,18 @@ Download and install the latest versions of packages hosted on
 }
 \details{
 Install the Latest Package Version as of a Specific Date from the MRAN Server
+}
+\examples{
+\dontrun{
+# install yesterday's version of checkpoint
+install.dates('checkpoint', Sys.Date() - 1)
+
+# install yesterday's versions of checkpoint and devtools
+install.dates(c('checkpoint', 'devtools'), Sys.Date() - 1)
+
+# install yesterday's version of checkpoint and the day before's devtools
+install.dates(c('checkpoint', 'devtools'), Sys.Date() - 1:2)
+
+}
 }
 
