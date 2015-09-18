@@ -65,14 +65,17 @@ install.dates('checkpoint', '2015-01-01')
 
 #### installation
 
-Currently the package can be installed with devtools.
+The package is on CRAN so you can install it with:
+
+```r
+install.packages('versions')
+```
+
+You can also installed straight from GitHub using `devtools`:
 
 ```r
 devtools::install_github('goldingn/versions')
 ```
-
-Hopefully it'll be on CRAN soon too.
-
 
 #### why?
 
