@@ -1,7 +1,7 @@
 #' @title versions: Query and Install Specific Versions of Packages on CRAN
 #'
-#' @name versions
-#' @description \code{versions} installs specified versions of R packages
+#' @name versions-package
+#' @description Installs specified versions of R packages
 #' hosted on CRAN and provides functions to list available versions and the
 #' versions of currently installed packages. These tools can be used to help
 #' make R projects and packages more reproducible.
