@@ -71,7 +71,7 @@ The package is on CRAN so you can install it with:
 install.packages('versions')
 ```
 
-You can also installed straight from GitHub using `devtools`:
+You can also install straight from GitHub using `devtools`:
 
 ```r
 devtools::install_github('goldingn/versions')
