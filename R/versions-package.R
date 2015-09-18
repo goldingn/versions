@@ -20,7 +20,7 @@
 #' \code{checkpoint} doesn't provide \code{install.packages}-like functionality
 #' however, and that's what \code{versions} aims to do, by querying MRAN.
 #'
-#' As MRAN only goes back to 2014-09-17, \code{versions} can't install package
+#' As MRAN only goes back to 2014-09-17, \code{versions} can't install packages
 #' from before this date.
 #'
 #' The available functions are:
