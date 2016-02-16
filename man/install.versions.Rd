@@ -11,31 +11,32 @@ install.versions(pkgs, versions, lib, ...)
 downloaded and installed}
 
 \item{versions}{character vector of the versions of packages to be
- downloaded and installed. If this has the same length as \code{pkgs}
- versions will correspond to those packages. If this has length one
- the same version will be used for all packages. If it has any other
- length an error will be thrown.}
+downloaded and installed. If this has the same length as \code{pkgs}
+versions will correspond to those packages. If this has length one
+the same version will be used for all packages. If it has any other
+length an error will be thrown.}
 
 \item{lib}{character vector giving the library directories where to
- install the packages. Recycled as needed. If missing, defaults to the
- first element of \code{\link{.libPaths}()}.}
+install the packages. Recycled as needed. If missing, defaults to the
+first element of \code{\link{.libPaths}()}.}
 
 \item{\dots}{other arguments to be passed to \code{\link{install.packages}}.
- The arguments \code{repos} and \code{contriburl} (at least) will
- be ignored as the function uses the MRAN server to retrieve package versions.}
+The arguments \code{repos} and \code{contriburl} (at least) will
+be ignored as the function uses the MRAN server to retrieve package versions.}
 }
 \description{
 Download and install named versions of packages hosted on
  CRAN from the MRAN server.
 }
 \examples{
+
 \dontrun{
 
 # install an earlier version of checkpoint
-install.dates('checkpoint', '0.3.3')
+install.versions('checkpoint', '0.3.3')
 
 # install earlier versions of checkpoint and devtools
-install.dates(c('checkpoint', 'devtools'), c('0.3.3', '1.6.1'))
+install.versions(c('checkpoint', 'devtools'), c('0.3.3', '1.6.1'))
 
 }
 }

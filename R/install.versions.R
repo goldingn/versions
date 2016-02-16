@@ -27,10 +27,10 @@
 #'\dontrun{
 #'
 #' # install an earlier version of checkpoint
-#' install.dates('checkpoint', '0.3.3')
+#' install.versions('checkpoint', '0.3.3')
 #'
 #' # install earlier versions of checkpoint and devtools
-#' install.dates(c('checkpoint', 'devtools'), c('0.3.3', '1.6.1'))
+#' install.versions(c('checkpoint', 'devtools'), c('0.3.3', '1.6.1'))
 #'
 #'}
 install.versions <- function (pkgs,
