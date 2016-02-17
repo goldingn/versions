@@ -9,7 +9,7 @@ url.lines <- function (url) {
 
   # stick the html in there
   suppressWarnings(success <- download.file(url, file,
-                           quiet = TRUE))
+                                            quiet = TRUE))
 
   # if it failed, issue a nice error
   if (success != 0) {
@@ -78,7 +78,7 @@ scrape.index.versions <- function (url, pkgs) {
 
   # remove the leading package name
   versions <- gsub(sprintf('^%s_', pkgs),
-                '', versions)
+                   '', versions)
 
   # remove the trailing tarball extension
   versions <- gsub('.tar.gz$', '', versions)
@@ -101,6 +101,31 @@ scrape.index.versions <- function (url, pkgs) {
 
 }
 
+
+# given the url to an archive ('.../src/contrib/Archive'), a package name
+# and version, see if the package is present and return a scalar logical
+pkg.in.archive <- function (url, pkg) {
+
+  # get the lines
+  lines <- url.lines(url)
+
+  # keep only lines starting with hrefs
+  lines <- lines[grep('^<a href="*', lines)]
+
+  # take the sequence after the href that is between the quotes
+  items <- gsub('.*href=\"([^\"]+)\".*', '\\1', lines)
+
+  # expected directory name
+  dir <- paste0(pkg, '/')
+
+  # search for the expected package directory
+  archived <- dir %in% items
+
+  return (archived)
+
+}
+
+
 # given packages name and required versions,
 # return a date when it was live on CRAN
 version2date <- function (pkgs, versions) {
@@ -120,7 +145,7 @@ version2date <- function (pkgs, versions) {
   # error if the version is not recognised
   if (!(versions %in% df$version)) {
     stop (sprintf('%s does not appear to be a valid version of %s.
-Use available.versions("%s") to get valid versions\n\n',
+                  Use available.versions("%s") to get valid versions\n\n',
                   versions,
                   pkgs,
                   pkgs))
@@ -132,9 +157,9 @@ Use available.versions("%s") to get valid versions\n\n',
   # error if the version is recognised, but not available on MRAN
   if (!df$available[idx]) {
     stop (sprintf("%s is a valid version of %s, but was published before
-2014-09-17 and can therefore not be downloaded from MRAN.
-Try using devtools::install_version to install the package
-from its source in the CRAN archives\n\n",
+                  2014-09-17 and can therefore not be downloaded from MRAN.
+                  Try using devtools::install_version to install the package
+                  from its source in the CRAN archives\n\n",
                   versions,
                   pkgs))
   }
@@ -199,7 +224,7 @@ current.version <- function (pkg) {
   } else {
     # otherwise warn and return NAs
     warning (sprintf('The current version and publication date of %s could not
-be detected',
+                     be detected',
                      pkg))
     versions <- dates <- NA
   }
