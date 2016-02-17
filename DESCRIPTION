@@ -2,7 +2,7 @@ Package: versions
 Type: Package
 Title: Query and Install Specific Versions of Packages on CRAN
 Version: 0.2
-Date: 2015-09-17
+Date: 2016-02-17
 Author: Nick Golding
 Maintainer: Nick Golding <nick.golding.research@gmail.com>
 Description: Installs specified versions of R packages hosted on CRAN and
