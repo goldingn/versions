@@ -2,6 +2,10 @@
 [![cran version](http://www.r-pkg.org/badges/version/versions)](http://cran.rstudio.com/web/packages/versions)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/versions)](http://www.r-pkg.org/pkg/versions)
 
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Pending Pull-Requests](http://githubbadges.herokuapp.com/goldingn/versions/pulls.svg?style=flat)](https://github.com/goldingn/versions/pulls)
+[![Github Issues](http://githubbadges.herokuapp.com/goldingn/versions/issues.svg)](https://github.com/goldingn/versions/issues)
+
 # versions
 
 *versions* installs specified versions of R packages hosted on CRAN and provides
