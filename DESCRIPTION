@@ -22,4 +22,5 @@ Description: Installs specified versions of R packages hosted on CRAN and
     2014-09-17, 'versions' can't install packages from before this date.
 License: BSD_3_clause + file LICENSE
 LazyData: TRUE
+BugReports: https://github.com/goldingn/versions/issues
 RoxygenNote: 5.0.1
