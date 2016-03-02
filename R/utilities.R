@@ -18,7 +18,7 @@ url.lines <- function (url) {
   }
 
   # get the lines, delete the file and return
-  lines <- readLines(file)
+  lines <- readLines(file, encoding = "UTF-8")
   file.remove(file)
   return (lines)
 }
