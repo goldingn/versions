@@ -77,8 +77,13 @@ available.versions <- function (pkgs) {
   df <- rbind(current_df,
               previous_df)
 
-  # add whether they are on MRAN
+  # add whether they were posted since the start of MRAN
   df$available <- as.Date(df$date) >= as.Date('2014-09-17')
+
+  # also find the most recent version before the start of MRAN
+  first_available <- min(which(as.Date(df$date) <= as.Date('2014-09-17')))
+
+  df$available[first_available] <- TRUE
 
   # wrap into a list
   ans <- list()
