@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/goldingn/versions.svg?branch=master)](https://travis-ci.org/goldingn/versions)
-[![cran version](http://www.r-pkg.org/badges/version/versions)](http://cran.rstudio.com/web/packages/versions)
+[![cran version](http://www.r-pkg.org/badges/version/versions)](https://cran.r-project.org/package=versions)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/versions)](http://www.r-pkg.org/pkg/versions)
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -12,9 +12,9 @@
 functions to list available versions and the versions of currently installed
 packages. These tools can be used to help make R projects and packages more
 reproducible. *versions* fits in the narrow gap between the
-[`devtools`](https://cran.r-project.org/web/packages/devtools/index.html)
+[`devtools`](https://cran.r-project.org/package=devtools)
 `install_version` function and the
-[`checkpoint`](https://cran.r-project.org/web/packages/checkpoint/index.html)
+[`checkpoint`](https://cran.r-project.org/package=checkpoint)
 package, using Revolution Analytics'
 [MRAN snapshot server](https://mran.revolutionanalytics.com/documents/rro/reproducibility/).
 
