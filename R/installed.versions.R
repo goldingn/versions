@@ -34,8 +34,8 @@ installed.versions <- function (pkgs,
   if (missing(lib) || is.null(lib)) {
     lib <- .libPaths()[1L]
     if (length(.libPaths()) > 1L)
-      message(sprintf(ngettext(length(pkgs), "Installing package into %s\n(as %s is unspecified)",
-                               "Installing packages into %s\n(as %s is unspecified)"),
+      message(sprintf(ngettext(length(pkgs), "Checking package in %s\n(as %s is unspecified)",
+                               "Checking packages in %s\n(as %s is unspecified)"),
                       sQuote(lib), sQuote("lib")), domain = NA)
   }
 
