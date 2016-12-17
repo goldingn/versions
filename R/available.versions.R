@@ -27,7 +27,7 @@
 #' }
 #'
 available.versions <- function (pkgs) {
-
+  
   # vectorise by recursion
   if (length(pkgs) > 1) {
     ans <- lapply(pkgs,
@@ -40,6 +40,12 @@ available.versions <- function (pkgs) {
 
     return (ans)
   }
+  
+  # store the current locale, switch to C locale, and switch back to initial
+  # locale on leaving the environment. Thanks to @stla for this fix!
+  lct <- Sys.getlocale("LC_TIME") 
+  on.exit(Sys.setlocale("LC_TIME", lct))
+  Sys.setlocale("LC_TIME", "C")
 
   # get the current version
   current_df <- current.version(pkgs)

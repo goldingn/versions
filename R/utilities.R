@@ -182,7 +182,7 @@ version2date <- function (pkgs, versions) {
 
 # get current version of package
 current.version <- function (pkg) {
-
+    
   # get all current contributed packages in latest MRAN
   current_url <- sprintf('%s/src/contrib',
                          latest.MRAN())
