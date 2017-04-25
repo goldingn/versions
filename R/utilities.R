@@ -258,3 +258,38 @@ current_version <- function (pkg) {
              stringsAsFactors = FALSE)
 
 }
+
+# check the status of a package (active or deprecated).
+# give a message if it's deprecated and error if it's missing
+package_status <- function (pkg) {
+
+  # is there a version in the current snapshot?
+  current_df <- current_version(pkg)
+  active <- !is.na(current_df$version[1])
+
+  # is there an archived version?
+  archived <- package_in_archive(pkg)
+
+  if (active) {
+
+    # it's curently hosted on CRAN
+    return ('active')
+
+  } else {
+
+    if (archived) {
+
+      # it's been removed from CRAN, but archived versions are still available
+      message("package '", pkg, "' has been removed from CRAN, but archived versions are still available")
+      return ('deprecated')
+
+    } else {
+
+      # otherwise it was never on CRAN
+      stop ("'", pkg, "' does not appear to be a valid package on CRAN")
+
+    }
+
+  }
+
+}

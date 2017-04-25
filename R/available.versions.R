@@ -42,10 +42,18 @@ available.versions <- function (pkgs) {
 
   }
 
-  # get the current version
-  current_df <- current_version(pkgs)
+  # check the status of the package, with warnings
+  status <- package_status(pkgs)
 
-  # see if the package has been archived
+  # if it's active, start with the current version, else initiate an empty
+  # dataframe
+  if (status == 'active') {
+    current_df <- current_version(pkgs)
+  } else {
+    current_df <- data.frame(version = '',
+                             date = Sys.Date(),
+                             stringsAsFactors = FALSE)[0, ]
+  }
 
   # check for the package on the most recent MRAN image
   archived <- package_in_archive(pkgs)
