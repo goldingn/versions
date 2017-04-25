@@ -12,10 +12,8 @@ url_lines <- function (url) {
                                             quiet = TRUE))
 
   # if it failed, issue a nice error
-  if (success != 0) {
-    stop (sprintf('URL does not appear to exist: %s',
-                  url))
-  }
+  if (success != 0)
+    stop ('URL does not appear to exist: ', url)
 
   # get the lines, delete the file and return
   lines <- readLines(file, encoding = "UTF-8")
@@ -165,11 +163,12 @@ version_to_date <- function (pkgs, versions) {
 
   # error if the version is not recognised
   if (!(versions %in% df$version)) {
-    stop (sprintf('%s does not appear to be a valid version of %s.
-                  Use available.versions("%s") to get valid versions\n\n',
-                  versions,
-                  pkgs,
-                  pkgs))
+    stop (versions,
+          " does not appear to be a valid version of '",
+          pkgs,
+          "'.\nUse available.versions('",
+          pkgs,
+          "') to get valid versions")
   }
 
   # find the row corresponding to the version
@@ -177,19 +176,18 @@ version_to_date <- function (pkgs, versions) {
 
   # error if the version is recognised, but not available on MRAN
   if (!df$available[idx]) {
-    stop (sprintf("%s is a valid version of %s, but was published before
-                  2014-09-17 and can therefore not be downloaded from MRAN.
-                  Try using devtools::install_version to install the package
-                  from its source in the CRAN archives\n\n",
-                  versions,
-                  pkgs))
+    stop (versions,
+          " is a valid version of '",
+          pkgs,
+          "', but was published before 2014-09-17 so cannot be downloaded",
+          " from MRAN.\nTry using devtools::install_version to install the",
+          " package from source in the CRAN archives")
   }
 
   # get a middling date
 
   # append today's date (note idx is one off now)
-  dates <- c(Sys.Date(),
-             as.Date(df$date))
+  dates <- c(Sys.Date(), as.Date(df$date))
 
   # get the mean of the publication date and subsequent publication date
   # (or today) as the target date for version installation

@@ -63,10 +63,8 @@ install.dates <- function (pkgs,
 
   # check none of the dates are before the first MRAN date
   if (any(as.Date(dates) < as.Date('2014-09-17'))) {
-    stop (sprintf('cannot install packages before 2014-09-17 as this is the
-                  earliest date archived on MRAN.
-                  Found date: %s',
-                  min(as.Date(dates))))
+    stop ('cannot install packages before 2014-09-17 as this is the earliest date archived on MRAN.\tFound date: ',
+                  min(as.Date(dates)))
   }
 
   # loop through packages installing them
