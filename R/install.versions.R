@@ -54,7 +54,7 @@ install.versions <- function (pkgs,
   }
 
   # get date corresponding to version for this package
-  date <- version2date(pkgs = pkgs,
+  date <- version_to_date(pkgs = pkgs,
                        versions = versions)
 
   # install by date

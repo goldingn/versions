@@ -39,32 +39,22 @@ available.versions <- function (pkgs) {
     names(ans) <- pkgs
 
     return (ans)
+
   }
 
   # get the current version
-  current_df <- current.version(pkgs)
+  current_df <- current_version(pkgs)
 
   # see if the package has been archived
 
-  # get most recent MRAN image URL, Archive directory
-  archive_url <- sprintf('%s/src/contrib/Archive',
-                         latest.MRAN())
-
-  # check for the package
-  archived <- pkg.in.archive(archive_url, pkgs)
+  # check for the package on the most recent MRAN image
+  archived <- package_in_archive(pkgs)
 
   # if it is archived, get the previous versions
   if (archived) {
 
-    # get most recent MRAN image URL for the package archive
-    # (inside the Archive directory)
-    pkg_archive_url <- sprintf('%s/src/contrib/Archive/%s',
-                           latest.MRAN(),
-                           pkgs)
-
-    # scrape the versions therein
-    previous_df <- scrape.index.versions(pkg_archive_url,
-                                         pkgs)
+    # scrape the versions in the package archive for most recent MRAN
+    previous_df <- scrape_index_versions(pkgs)
 
   } else {
 
@@ -90,9 +80,8 @@ available.versions <- function (pkgs) {
 
   # wrap into a list
   ans <- list()
-
   ans[[pkgs]] <- df
 
-  return(ans)
+  ans
 
 }

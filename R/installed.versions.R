@@ -69,5 +69,4 @@ installed.versions <- function (pkgs,
 
   }
 
-
 }
