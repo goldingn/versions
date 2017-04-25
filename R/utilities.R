@@ -184,14 +184,15 @@ version_to_date <- function (pkgs, versions) {
           " package from source in the CRAN archives")
   }
 
-  # get a middling date
+  # get the day *after* this version first appeared on CRAN, to use as the MRAN
+  # snapshot date (in case of atime difference issue)
+  date <- as.Date(df$date[idx]) + 1
 
-  # append today's date (note idx is one off now)
-  dates <- c(Sys.Date(), as.Date(df$date))
+  # make sure this wasn't before the MRAN start date
+  # we already checked it's available, so this must be before it was superceded
+  date <- max(date, as.Date('2014-09-17'))
 
-  # get the mean of the publication date and subsequent publication date
-  # (or today) as the target date for version installation
-  as.character(mean(dates[idx + 0:1]))
+  as.character(date)
 
 }
 
