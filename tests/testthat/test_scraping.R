@@ -2,7 +2,7 @@ context('scraping')
 
 test_that('current_version handles valid, invalid and deprecated packages correctly', {
 
-  skip_on_cran()
+  # skip_on_cran()
 
   null_df <- data.frame(version = NA,
                         date = as.character(NA),
@@ -34,7 +34,7 @@ test_that('current_version handles valid, invalid and deprecated packages correc
 
 test_that('package_in_archive finds a archived versions of versions', {
 
-  skip_on_cran()
+  # skip_on_cran()
 
   # an invalid/non-archived package
   invalid_in <- package_in_archive('some_package')
@@ -48,7 +48,7 @@ test_that('package_in_archive finds a archived versions of versions', {
 
 test_that('package_status behaves as expected', {
 
-  skip_on_cran()
+  # skip_on_cran()
 
   # an invalid package should error
   expect_error(package_status('some_package'),
@@ -67,7 +67,7 @@ test_that('package_status behaves as expected', {
 
 test_that('version_to_date behaves as expected', {
 
-  skip_on_cran()
+  # skip_on_cran()
 
   # the first and a recent version of a valid package should return the correct
   # date
@@ -77,6 +77,12 @@ test_that('version_to_date behaves as expected', {
   versions_0.3_date <- version_to_date('versions', '0.3')
   expect_identical(versions_0.3_date, '2016-09-02')
 
+  # should also work when vectorised
+  versions_0.1_0.3_date <- version_to_date(c('versions', 'versions'),
+                                           c('0.1', '0.3'))
+  expect_identical(versions_0.1_0.3_date, c(versions = '2015-09-19',
+                                            versions = '2016-09-02'))
+
   # an invalid version should error, starting with this message
   expect_error(version_to_date('versions', '0.15'),
                "^0.15 does not appear to be a valid version of 'versions'")
@@ -85,5 +91,13 @@ test_that('version_to_date behaves as expected', {
   expect_error(version_to_date('some_package', '0.1'),
                "'some_package' does not appear to be a valid package on CRAN")
 
+  # a package archived pre-MRAN should error, starting with this message
+  expect_error(version_to_date('survey', '3.30-2'),
+               "^3.30-2 is a valid version of 'survey', but was published before 2014-09-17 so cannot be downloaded from MRAN")
+
+  # a package active pre-MRAN and archived post-MRAN should have the MRAN start date
+  survey_3.30_3_date <- version_to_date('survey', '3.30-3')
+  expect_equal(survey_3.30_3_date, '2014-09-17')
+  # (actually uploaded '2014-08-15')
 
 })
