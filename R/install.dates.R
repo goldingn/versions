@@ -43,6 +43,12 @@ install.dates <- function (pkgs,
                            lib,
                            ...) {
 
+  # store the current locale, switch to C locale, and switch back to initial
+  # locale on leaving the environment. Thanks to @stla for this fix!
+  lct <- Sys.getlocale("LC_TIME") 
+  on.exit(Sys.setlocale("LC_TIME", lct))
+  Sys.setlocale("LC_TIME", "C")
+  
   # number of packages to install
   n_pkgs <- length(pkgs)
 

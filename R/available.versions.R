@@ -39,8 +39,13 @@ available.versions <- function (pkgs) {
     names(ans) <- pkgs
 
     return (ans)
-
   }
+
+  # store the current locale, switch to C locale, and switch back to initial
+  # locale on leaving the environment. Thanks to @stla for this fix!
+  lct <- Sys.getlocale("LC_TIME")
+  on.exit(Sys.setlocale("LC_TIME", lct))
+  Sys.setlocale("LC_TIME", "C")
 
   # check the status of the package, with warnings
   status <- package_status(pkgs)
