@@ -2,13 +2,8 @@ context('available.packages')
 
 test_that('available.packages behaves as expected', {
 
+  source('utils.R')
   skip_on_cran()
-
-  # subset to the first (bottom) three versions available
-  first_three <- function (df) {
-    idx <- nrow(df) - 3:1 + 1
-    df[idx, ]
-  }
 
   # should error for an invalid package
   expect_error(available.versions('some_package'),

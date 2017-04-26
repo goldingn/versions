@@ -2,13 +2,8 @@ context('installing')
 
 test_that('install.versions behaves as expected', {
 
+  source('utils.R')
   skip_on_cran()
-
-  purge <- function (pkg) {
-    details <- installed.packages(pkg)
-    if (nrow(details) > 0)
-      remove.packages(pkg)
-  }
 
   # should error for an invalid package, starting with this message
   expect_error(install.versions('some_package', '0.1'),
@@ -33,13 +28,8 @@ test_that('install.versions behaves as expected', {
 
 test_that('install.dates behaves as expected', {
 
+  source('utils.R')
   skip_on_cran()
-
-  purge <- function (pkg) {
-    details <- installed.packages(pkg)
-    if (nrow(details) > 0)
-      remove.packages(pkg)
-  }
 
   # should error for an invalid package, starting with this message
   expect_error(install.dates('some_package', Sys.Date()),
@@ -51,7 +41,7 @@ test_that('install.dates behaves as expected', {
   expect_warning(
     expect_message(install.dates('rnbn', '2017-04-26'),
                    "package 'rnbn' has been removed from CRAN, but archived versions are still available"),
-    "^package ‘rnbn’ is not available")
+    "^package 'rnbn' is not available")
   rnbn_version <- installed.versions('rnbn')
   expect_identical(rnbn_version, NA)
 
@@ -66,15 +56,10 @@ test_that('install.dates behaves as expected', {
 
 })
 
-test_that('installed.versions returns an NA is a package is not installed', {
+test_that('installed.versions returns an NA if a package is not installed', {
 
+  source('utils.R')
   skip_on_cran()
-
-  purge <- function (pkg) {
-    details <- installed.packages(pkg)
-    if (nrow(details) > 0)
-      remove.packages(pkg)
-  }
 
   purge('rnbn')
 
