@@ -2,7 +2,7 @@ context('scraping')
 
 test_that('current_version handles valid, invalid and deprecated packages correctly', {
 
-  # skip_on_cran()
+  skip_on_cran()
 
   null_df <- data.frame(version = NA,
                         date = as.character(NA),
@@ -34,7 +34,7 @@ test_that('current_version handles valid, invalid and deprecated packages correc
 
 test_that('package_in_archive finds a archived versions of versions', {
 
-  # skip_on_cran()
+  skip_on_cran()
 
   # an invalid/non-archived package
   invalid_in <- package_in_archive('some_package')
@@ -48,7 +48,7 @@ test_that('package_in_archive finds a archived versions of versions', {
 
 test_that('package_status behaves as expected', {
 
-  # skip_on_cran()
+  skip_on_cran()
 
   # an invalid package should error
   expect_error(package_status('some_package'),
@@ -67,7 +67,7 @@ test_that('package_status behaves as expected', {
 
 test_that('version_to_date behaves as expected', {
 
-  # skip_on_cran()
+  skip_on_cran()
 
   # the first and a recent version of a valid package should return the correct
   # date
