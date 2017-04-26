@@ -1,10 +1,7 @@
 [![Build Status](https://travis-ci.org/goldingn/versions.svg?branch=master)](https://travis-ci.org/goldingn/versions)
+[![codecov.io](https://codecov.io/github/goldingn/versions/coverage.svg?branch=master)](https://codecov.io/github/goldingn/versions?branch=master)
 [![cran version](http://www.r-pkg.org/badges/version/versions)](https://cran.r-project.org/package=versions)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/versions)](http://www.r-pkg.org/pkg/versions)
-
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Pending Pull-Requests](http://githubbadges.herokuapp.com/goldingn/versions/pulls.svg?style=flat)](https://github.com/goldingn/versions/pulls)
-[![Github Issues](http://githubbadges.herokuapp.com/goldingn/versions/issues.svg)](https://github.com/goldingn/versions/issues)
 
 # versions
 
