@@ -45,3 +45,45 @@ test_that('package_in_archive finds a archived versions of versions', {
   expect_true(valid_in)
 
 })
+
+test_that('package_status behaves as expected', {
+
+  skip_on_cran()
+
+  # an invalid package should error
+  expect_error(package_status('some_package'),
+               "'some_package' does not appear to be a valid package on CRAN")
+
+  # a valid, but deprecated package should give a message and return 'deprecated'
+  expect_message(deprecated_status <- package_status('rnbn'),
+               "package 'rnbn' has been removed from CRAN, but archived versions are still available")
+  expect_identical(deprecated_status, 'deprecated')
+
+  # a valid and current package should quietly return 'active'
+  active_status <- package_status('versions')
+  expect_identical(active_status, 'active')
+
+})
+
+test_that('version_to_date behaves as expected', {
+
+  skip_on_cran()
+
+  # the first and a recent version of a valid package should return the correct
+  # date
+  versions_0.1_date <- version_to_date('versions', '0.1')
+  expect_identical(versions_0.1_date, '2015-09-19')
+
+  versions_0.3_date <- version_to_date('versions', '0.3')
+  expect_identical(versions_0.3_date, '2016-09-02')
+
+  # an invalid version should error, starting with this message
+  expect_error(version_to_date('versions', '0.15'),
+               "^0.15 does not appear to be a valid version of 'versions'")
+
+  # an invalid package should error
+  expect_error(version_to_date('some_package', '0.1'),
+               "'some_package' does not appear to be a valid package on CRAN")
+
+
+})
