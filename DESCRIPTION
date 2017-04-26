@@ -24,3 +24,4 @@ License: BSD_3_clause + file LICENSE
 LazyData: TRUE
 BugReports: https://github.com/goldingn/versions/issues
 RoxygenNote: 5.0.1
+Suggests: testthat
