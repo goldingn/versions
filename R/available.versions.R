@@ -27,7 +27,7 @@
 #' }
 #'
 available.versions <- function (pkgs) {
-  
+
   # vectorise by recursion
   if (length(pkgs) > 1) {
     ans <- lapply(pkgs,
@@ -40,37 +40,34 @@ available.versions <- function (pkgs) {
 
     return (ans)
   }
-  
+
   # store the current locale, switch to C locale, and switch back to initial
   # locale on leaving the environment. Thanks to @stla for this fix!
-  lct <- Sys.getlocale("LC_TIME") 
+  lct <- Sys.getlocale("LC_TIME")
   on.exit(Sys.setlocale("LC_TIME", lct))
   Sys.setlocale("LC_TIME", "C")
 
-  # get the current version
-  current_df <- current.version(pkgs)
+  # check the status of the package, with warnings
+  status <- package_status(pkgs)
 
-  # see if the package has been archived
+  # if it's active, start with the current version, else initiate an empty
+  # dataframe
+  if (status == 'active') {
+    current_df <- current_version(pkgs)
+  } else {
+    current_df <- data.frame(version = '',
+                             date = Sys.Date(),
+                             stringsAsFactors = FALSE)[0, ]
+  }
 
-  # get most recent MRAN image URL, Archive directory
-  archive_url <- sprintf('%s/src/contrib/Archive',
-                         latest.MRAN())
-
-  # check for the package
-  archived <- pkg.in.archive(archive_url, pkgs)
+  # check for the package on the most recent MRAN image
+  archived <- package_in_archive(pkgs)
 
   # if it is archived, get the previous versions
   if (archived) {
 
-    # get most recent MRAN image URL for the package archive
-    # (inside the Archive directory)
-    pkg_archive_url <- sprintf('%s/src/contrib/Archive/%s',
-                           latest.MRAN(),
-                           pkgs)
-
-    # scrape the versions therein
-    previous_df <- scrape.index.versions(pkg_archive_url,
-                                         pkgs)
+    # scrape the versions in the package archive for most recent MRAN
+    previous_df <- scrape_index_versions(pkgs)
 
   } else {
 
@@ -96,9 +93,8 @@ available.versions <- function (pkgs) {
 
   # wrap into a list
   ans <- list()
-
   ans[[pkgs]] <- df
 
-  return(ans)
+  ans
 
 }

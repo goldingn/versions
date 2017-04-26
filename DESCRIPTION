@@ -1,8 +1,8 @@
 Package: versions
 Type: Package
 Title: Query and Install Specific Versions of Packages on CRAN
-Version: 0.3
-Date: 2016-09-01
+Version: 0.4
+Date: 2017-04-25
 Author: Nick Golding
 Maintainer: Nick Golding <nick.golding.research@gmail.com>
 Description: Installs specified versions of R packages hosted on CRAN and
@@ -24,3 +24,4 @@ License: BSD_3_clause + file LICENSE
 LazyData: TRUE
 BugReports: https://github.com/goldingn/versions/issues
 RoxygenNote: 5.0.1
+Suggests: testthat

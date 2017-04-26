@@ -7,7 +7,7 @@
 #'  downloaded and installed
 #'
 #' @param dates character or Date vector of the dates for which to install the
-#' latest versions of \code{pkgs}. If a data vector, it must be in the format
+#' latest versions of \code{pkgs}. If a character vector, it must be in the format
 #' 'yyyy-mm-dd', e.g. '2014-09-17'. If this has the same length as \code{pkgs}
 #'  versions will correspond to those packages. If this has length one
 #'  the same version will be used for all packages. If it has any other
@@ -69,10 +69,8 @@ install.dates <- function (pkgs,
 
   # check none of the dates are before the first MRAN date
   if (any(as.Date(dates) < as.Date('2014-09-17'))) {
-    stop (sprintf('cannot install packages before 2014-09-17 as this is the
-                  earliest date archived on MRAN.
-                  Found date: %s',
-                  min(as.Date(dates))))
+    stop ('cannot install packages before 2014-09-17 as this is the earliest date archived on MRAN.\tFound date: ',
+                  min(as.Date(dates)))
   }
 
   # loop through packages installing them
@@ -81,6 +79,9 @@ install.dates <- function (pkgs,
     # get package and date
     pkg <- pkgs[i]
     date <- dates[i]
+
+    # check package status, to force messages and errors
+    status <- package_status(pkg)
 
     # define repository
     repos <- paste0('https://MRAN.revolutionanalytics.com/snapshot/', date)

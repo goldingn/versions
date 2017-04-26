@@ -34,19 +34,21 @@ installed.versions <- function (pkgs,
   if (missing(lib) || is.null(lib)) {
     lib <- .libPaths()[1L]
     if (length(.libPaths()) > 1L)
-      message(sprintf(ngettext(length(pkgs), "Checking package in %s\n(as %s is unspecified)",
-                               "Checking packages in %s\n(as %s is unspecified)"),
-                      sQuote(lib), sQuote("lib")), domain = NA)
+      message("Checking package",
+              ifelse(length(pkgs) == 1, "", "s"),
+              " in ", lib, "\n(as 'lib' is unspecified)")
   }
 
 
   # vectorise by recursion
   if (length(pkgs) > 1) {
+
     ans <- sapply(pkgs,
                   installed.versions,
                   lib)
 
     return (ans)
+
   }
 
   # get path to package description
@@ -68,6 +70,5 @@ installed.versions <- function (pkgs,
     return (vers)
 
   }
-
 
 }
