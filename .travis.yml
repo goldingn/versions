@@ -1,22 +1,16 @@
-## Sample .travis.yml file for use with metacran/r-builder
-## See https://github.com/metacran/r-builder for details.
-
-language: c
+language: r
+dist: trusty
+cache: packages
 sudo: required
 
-before_install:
-  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
-  - chmod 755 pkg-build.sh
-  - ./pkg-build.sh bootstrap
+r_packages:
+ - testthat
+ - covr
 
-install:
-  - ./pkg-build.sh install_deps
+after_success:
+ - Rscript -e 'library(covr);codecov()'
 
-script:
-  - ./pkg-build.sh run_tests
-
-after_failure:
-  - ./pkg-build.sh dump_logs
+warnings_are_errors: false
 
 notifications:
   email:
@@ -25,7 +19,21 @@ notifications:
 
 env:
   matrix:
-    - RVERSION=oldrel
-    - RVERSION=release
-    - RVERSION=devel
-
+    - r:oldrel 
+      not_cran: true
+      r_check_args: "--no-manual"
+    - r: oldrel
+      not_cran: false
+      r_check_args: "--no-manual --as--cran"
+    - r: release
+      not_cran: true
+      r_check_args: "--no-manual"
+    - r: release
+      not_cran: false
+      r_check_args: "--no-manual --as--cran"
+    - r: devel
+      not_cran: true
+      r_check_args: "--no-manual"
+    - r: devel
+      not_cran: false
+      r_check_args: "--no-manual --as--cran"
