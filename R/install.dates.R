@@ -7,7 +7,7 @@
 #'  downloaded and installed
 #'
 #' @param dates character or Date vector of the dates for which to install the
-#' latest versions of \code{pkgs}. If a data vector, it must be in the format
+#' latest versions of \code{pkgs}. If a character vector, it must be in the format
 #' 'yyyy-mm-dd', e.g. '2014-09-17'. If this has the same length as \code{pkgs}
 #'  versions will correspond to those packages. If this has length one
 #'  the same version will be used for all packages. If it has any other
