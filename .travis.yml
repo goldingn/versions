@@ -20,21 +20,6 @@ notifications:
 env:
   matrix:
     - r: oldrel 
-      not_cran: true
-      r_check_args: "--no-manual"
-    - r: oldrel
-      not_cran: false
-      r_check_args: "--no-manual --as--cran"
     - r: release
-      not_cran: true
-      r_check_args: "--no-manual"
-    - r: release
-      not_cran: false
-      r_check_args: "--no-manual --as--cran"
     - r: devel
-      not_cran: true
-      r_check_args: "--no-manual"
-    - r: devel
-      not_cran: false
-      r_check_args: "--no-manual --as--cran"
 
