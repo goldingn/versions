@@ -74,6 +74,9 @@ install.dates <- function (pkgs,
     pkg <- pkgs[i]
     date <- dates[i]
 
+    # check package status, to force messages and errors
+    status <- package_status(pkg)
+
     # define repository
     repos <- paste0('https://MRAN.revolutionanalytics.com/snapshot/', date)
 
