@@ -19,7 +19,7 @@ notifications:
 
 env:
   matrix:
-    - r:oldrel 
+    - r: oldrel 
       not_cran: true
       r_check_args: "--no-manual"
     - r: oldrel
@@ -37,3 +37,4 @@ env:
     - r: devel
       not_cran: false
       r_check_args: "--no-manual --as--cran"
+
