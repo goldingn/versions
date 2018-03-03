@@ -84,7 +84,7 @@ available.versions <- function (pkgs) {
   df$available <- as.Date(df$date) >= as.Date('2014-09-17')
 
   # also find the most recent version before the start of MRAN
-  if (!all(df$available)) {
+  if (!all(is.na(df$available)) && !all(df$available)) {
 
     first_available <- min(which(as.Date(df$date) <= as.Date('2014-09-17')))
     df$available[first_available] <- TRUE
