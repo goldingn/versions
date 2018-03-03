@@ -34,4 +34,3 @@ available.versions(c('checkpoint', 'devtools'))
 }
 
 }
-
