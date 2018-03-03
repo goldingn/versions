@@ -13,7 +13,7 @@ reproducible. *versions* fits in the narrow gap between the
 `install_version` function and the
 [`checkpoint`](https://cran.r-project.org/package=checkpoint)
 package, using Revolution Analytics'
-[MRAN snapshot server](https://mran.revolutionanalytics.com/documents/rro/reproducibility/).
+[MRAN snapshot server](https://mran.microsoft.com/documents/rro/reproducibility/).
 
 ### usage
 
