@@ -25,7 +25,7 @@ url_lines <- function (url) {
 
 # return the url for the latest date on an index page of dates
 # (by default the MRAN snappshot index page)
-latest_mran <- function (url = 'https://mran.revolutionanalytics.com/snapshot') {
+latest_mran <- function (url = 'https://cran.microsoft.com/snapshot') {
 
   # get all full dates
   dates <- scrape_index_dates(url)
