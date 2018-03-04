@@ -84,7 +84,7 @@ install.dates <- function (pkgs,
     status <- package_status(pkg)
 
     # define repository
-    repos <- paste0('https://cran.microsoft.com/snapshot/', date)
+    repos <- paste0(mran_url(), date)
 
     install.packages(pkgs = pkg,
                      lib = lib,

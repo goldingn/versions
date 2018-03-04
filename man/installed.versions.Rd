@@ -35,4 +35,3 @@ installed.versions(c('stats', 'versions'))
 installed.versions(c('stats', 'versions', 'notapackage'))
 
 }
-
