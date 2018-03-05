@@ -80,11 +80,12 @@ available.versions <- function (pkgs) {
   df <- rbind(current_df,
               previous_df)
 
+  if (all(is.na(df$available))) stop(sprintf("'%s' does not appear to be a valid package name", pkg))
   # add whether they were posted since the start of MRAN
   df$available <- as.Date(df$date) >= as.Date('2014-09-17')
 
   # also find the most recent version before the start of MRAN
-  if (!all(is.na(df$available)) && !all(df$available)) {
+  if (!all(df$available)) {
 
     first_available <- min(which(as.Date(df$date) <= as.Date('2014-09-17')))
     df$available[first_available] <- TRUE
