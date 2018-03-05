@@ -45,10 +45,10 @@ install.dates <- function (pkgs,
 
   # store the current locale, switch to C locale, and switch back to initial
   # locale on leaving the environment. Thanks to @stla for this fix!
-  lct <- Sys.getlocale("LC_TIME") 
+  lct <- Sys.getlocale("LC_TIME")
   on.exit(Sys.setlocale("LC_TIME", lct))
   Sys.setlocale("LC_TIME", "C")
-  
+
   # number of packages to install
   n_pkgs <- length(pkgs)
 
@@ -84,7 +84,7 @@ install.dates <- function (pkgs,
     status <- package_status(pkg)
 
     # define repository
-    repos <- paste0('https://MRAN.revolutionanalytics.com/snapshot/', date)
+    repos <- paste0(mran_url(), date)
 
     install.packages(pkgs = pkg,
                      lib = lib,

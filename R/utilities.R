@@ -25,7 +25,7 @@ url_lines <- function (url) {
 
 # return the url for the latest date on an index page of dates
 # (by default the MRAN snappshot index page)
-latest_mran <- function (url = 'https://mran.revolutionanalytics.com/snapshot') {
+latest_mran <- function (url = mran_url()) {
 
   # get all full dates
   dates <- scrape_index_dates(url)
@@ -293,4 +293,10 @@ package_status <- function (pkg) {
 
   }
 
+}
+
+# user-overridable url for MRAN
+mran_url <- function (subpath = "snapshot/") {
+  base_url <- getOption("versions.mran", "https://cran.microsoft.com")
+  paste(base_url, subpath, sep = "/")
 }

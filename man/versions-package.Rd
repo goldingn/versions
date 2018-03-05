@@ -35,6 +35,13 @@ The available functions are:
  \item \code{\link{installed.versions}}
 }
 }
+\details{
+The URL for MRAN may change from time to time. As of \code{versions}
+  0.4, the URL is \url{https://cran.microsoft.com/snapshot}, and this is what
+  the package uses. If the MRAN server URL changes before \code{versions} can
+  be updated, users can point versions to the new URL via the option
+  'versions.mran'. Ie. \code{options(versions.mran = "<some/new/url>")}
+}
 \examples{
 
 \dontrun{
@@ -55,4 +62,3 @@ install.dates('checkpoint', '2014-12-25')
 
 
 }
-

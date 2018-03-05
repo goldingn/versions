@@ -40,4 +40,3 @@ install.versions(c('checkpoint', 'devtools'), c('0.3.3', '1.6.1'))
 
 }
 }
-
