@@ -4,6 +4,7 @@ cache: packages
 sudo: required
 
 r_packages:
+ - devtools
  - testthat
  - covr
 
