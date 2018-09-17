@@ -184,9 +184,13 @@ version_to_date <- function (pkgs, versions) {
           " package from source in the CRAN archives")
   }
 
-  # get the day *after* this version first appeared on CRAN, to use as the MRAN
-  # snapshot date (in case of atime difference issue)
-  date <- as.Date(df$date[idx]) + 1
+  # The following either grabs the most recent snapshot, or a snapshot of the
+  # last day a package was available.
+  if (idx == 1) {
+    date <- Sys.Date() - 2
+  } else {
+    date <- as.Date(df$date[idx - 1]) - 1
+  }
 
   # make sure this wasn't before the MRAN start date
   # we already checked it's available, so this must be before it was superceded
