@@ -80,6 +80,7 @@ available.versions <- function (pkgs) {
   df <- rbind(current_df,
               previous_df)
 
+  if (all(is.na(df$available))) stop(sprintf("'%s' does not appear to be a valid package name", pkg))
   # add whether they were posted since the start of MRAN
   df$available <- as.Date(df$date) >= as.Date('2014-09-17')
 
