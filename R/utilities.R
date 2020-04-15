@@ -296,7 +296,8 @@ package_status <- function (pkg) {
 }
 
 # user-overridable url for MRAN
-mran_url <- function (subpath = "snapshot/") {
+mran_url <- function () {
   base_url <- getOption("versions.mran", "https://cran.microsoft.com")
+  subpath <- getOption("versions.subpath", "snapshot/")
   paste(base_url, subpath, sep = "/")
 }
