@@ -3,23 +3,15 @@
 # read lines from a url more quickly and with a clearer error
 # message on failure than readLines
 url_lines <- function (url) {
-
-  # create a tempfile
-  file <- tempfile()
-
-  # stick the html in there
-  suppressWarnings(success <- download.file(url, file,
-                                            quiet = TRUE))
-
-  # if it failed, issue a nice error
-  if (success != 0)
-    stop ('URL does not appear to exist: ', url)
-
-  # get the lines, delete the file and return
-  lines <- readLines(file, encoding = "UTF-8")
-  file.remove(file)
-  lines
-
+  result <- tryCatch(
+    {
+      readLines(base::url(url), encoding="UTF-8")
+    },
+    error=function(e) {
+      stop ('URL does not appear to exist: ', url)
+    }
+  )
+  return(result)
 }
 
 
